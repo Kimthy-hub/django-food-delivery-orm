@@ -1,0 +1,64 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Foodie - Food Delivery</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #fff8f0;
+            margin: 0;
+            color: #333;
+        }
+        header {
+            background: #e85d04;
+            color: white;
+            text-align: center;
+            padding: 25px;
+        }
+        .menu {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+            padding: 25px;
+        }
+        .food-card {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 3px 12px #ddd;
+        }
+        .food-card h2 {
+            color: #e85d04;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Foodie 🍔</h1>
+        <p>Your favourite food, delivered fresh!</p>
+    </header>
+
+    <h2 style="padding-left:25px;">Our Food Menu</h2>
+
+    <div class="menu">
+        {% for food in foods %}
+        <div class="food-card">
+            <h2>{{ food.name }}</h2>
+            <p>Restaurant: {{ food.restaurant }}</p>
+            <p>Category: {{ food.category }}</p>
+            <p>Price: ₹{{ food.price }}</p>
+            <p>
+                {% if food.is_available %}
+                    Available
+                {% else %}
+                    Not Available
+                {% endif %}
+            </p>
+        </div>
+        {% empty %}
+        <p>No food items available.</p>
+        {% endfor %}
+    </div>
+</body>
+</html>
